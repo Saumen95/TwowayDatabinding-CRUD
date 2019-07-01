@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Angular 2 and Above CRUD App - Using Two Way Data binding
+  </h1>
+</div>
+<div class="studentForm">
+  <label>{{
+    selectedStudent.StudentID == 0 ? "Insert Student" : "Update Student"
+  }}</label
+  ><br />
+  <input
+    [(ngModel)]="selectedStudent.RollNo"
+    class="textBox"
+    placeholder="RollNo"
+  /><br />
+  <input
+    [(ngModel)]="selectedStudent.Name"
+    class="textBox"
+    placeholder="Name"
+  /><br />
+  <button (click)="AddorEdit()" class="btnsubmit">Submit</button>
+  <button
+    *ngIf="selectedStudent.StudentID != 0"
+    (click)="Delete()"
+    class="btndelete"
+  >
+    Delete
+  </button>
+</div>
+<ul class="studentList">
+  <li
+    *ngFor="let student of StudentCollection"
+    (click)="OPenForEdit(student)"
+    [class.selected]="student == selectedStudent"
+  >
+    <span class="badge">{{ student.StudentID }}</span
+    >{{ student.RollNo }} - {{ student.Name }}
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
